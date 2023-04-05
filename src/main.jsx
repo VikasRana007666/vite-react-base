@@ -9,19 +9,21 @@ import About from "./pages/about";
 import Tasks from "./pages/tasks";
 import ErrorPage from "./pages/error-page";
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: `${baseUrl}`,
     element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/about",
+    path: `${baseUrl}about`,
     element: <About />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/tasks",
+    path: `${baseUrl}tasks`,
     element: <Tasks />,
     errorElement: <ErrorPage />,
   },

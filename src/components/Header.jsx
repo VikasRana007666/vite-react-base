@@ -3,10 +3,12 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const navigation = [
-  { name: "Home", to: "/" },
-  { name: "About", to: "/about" },
-  { name: "Tasks", to: "/tasks" },
+  { name: "Home", to: `${baseUrl}` },
+  { name: "About", to: `${baseUrl}about` },
+  { name: "Tasks", to: `${baseUrl}tasks` },
 ];
 
 const active = "mt-1 px-2 bg-red-400 text-white rounded-full";
