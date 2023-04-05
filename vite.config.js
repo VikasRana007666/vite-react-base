@@ -7,4 +7,5 @@ export default defineConfig({
   server: {
     port: "3000",
   },
+  base: "http://localhost/laravel/10_lara/api",
 });

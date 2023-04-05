@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
+  import.meta.env.TOKEN = "akjfdlkafd";
 
   return (
     <div className="App">
