@@ -1,17 +1,16 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Home", to: "/" },
+  { name: "About", to: "/about" },
+  { name: "Tasks", to: "/tasks" },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+const active = "mt-1 px-2 bg-red-400 text-white rounded-full";
+const inActive = "mt-1 text-white";
 
 export default function Header() {
   return (
@@ -45,21 +44,17 @@ export default function Header() {
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 items-center">
                     {navigation.map((item) => (
-                      <a
+                      <NavLink
                         key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
+                        to={item.to}
+                        className={({ isActive }) =>
+                          isActive ? active : inActive
+                        }
                       >
                         {item.name}
-                      </a>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -96,43 +91,39 @@ export default function Header() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
+                        <NavLink
+                          to={`#`}
+                          className={`${({ isActive }) =>
+                            isActive
+                              ? "bg-gray-100 block px-4 py-2 text-sm text-gray-700"
+                              : "block px-4 py-2 text-sm text-gray-700"}`}
+                        >
+                          Your Profile
+                        </NavLink>
                       </Menu.Item>
                       <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
+                        <NavLink
+                          to={`#`}
+                          className={({ isActive }) =>
+                            isActive
+                              ? "bg-gray-100 block px-4 py-2 text-sm text-gray-700"
+                              : "block px-4 py-2 text-sm text-gray-700"
+                          }
+                        >
+                          Settings
+                        </NavLink>
                       </Menu.Item>
                       <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
+                        <NavLink
+                          to={`#`}
+                          className={({ isActive }) =>
+                            isActive
+                              ? "bg-gray-100 block px-4 py-2 text-sm text-gray-700"
+                              : "block px-4 py-2 text-sm text-gray-700"
+                          }
+                        >
+                          Sign Out
+                        </NavLink>
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>
@@ -144,20 +135,17 @@ export default function Header() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <NavLink
                   key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                  }
                 >
                   {item.name}
-                </Disclosure.Button>
+                </NavLink>
               ))}
             </div>
           </Disclosure.Panel>
